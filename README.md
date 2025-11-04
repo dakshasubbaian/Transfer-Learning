@@ -49,29 +49,22 @@ Generate Confusion Matrix, Classification Report, and test on new sample images.
 
 
 ## PROGRAM:
-
 ```python
-# Load Pretrained Model and Modify for Transfer Learning
-
+# Load a pre-trained VGG19 model
 model = models.vgg19(pretrained=True)
 
-# Modify the final fully connected layer to match the dataset classes
 
+# Modify the final fully connected layer to match the dataset classes
 in_features=model.classifier[-1].in_features
 num_classes = len(train_dataset.classes)
 model.classifier[-1] = nn.Linear(in_features, 1)
 
-
 # Include the Loss function and optimizer
+criterion = nn.BCEWithLogitsLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-model =CNNClassifier()
-criterion =nn.CrossEntropyLoss()
-optimizer =optim.Adam(model.parameters(),lr=0.001)
-
-
-
-# Train the model
-def train_model(model, train_loader, test_loader, num_epochs=5):
+#Train the model
+def train_model(model, train_loader, test_loader, num_epochs=50):
     train_losses = []
     val_losses = []
     model.train()
@@ -105,8 +98,8 @@ def train_model(model, train_loader, test_loader, num_epochs=5):
         print(f'Epoch [{epoch+1}/{num_epochs}], Train Loss: {train_losses[-1]:.4f}, Validation Loss: {val_losses[-1]:.4f}')
 
     # Plot training and validation loss
-    print("Name:Aaron I")
-    print("Register Number:212223230002")
+    print("Name: DAKSHA SUBBAIAN ")
+    print("Register Number:212223230036")
     plt.figure(figsize=(8, 6))
     plt.plot(range(1, num_epochs + 1), train_losses, label='Train Loss', marker='o')
     plt.plot(range(1, num_epochs + 1), val_losses, label='Validation Loss', marker='s')
@@ -116,36 +109,38 @@ def train_model(model, train_loader, test_loader, num_epochs=5):
     plt.legend()
     plt.show()
 
-
-
 ```
 
 ## OUTPUT:
 ### Training Loss, Validation Loss Vs Iteration Plot
 
-<img width="1223" height="895" alt="image" src="https://github.com/user-attachments/assets/5834d778-19f6-4910-ba72-95d706485d25" />
+<img width="690" height="264" alt="image" src="https://github.com/user-attachments/assets/d720f7c9-e87b-401f-a66c-b08b899999dd" />
+<img width="857" height="674" alt="image" src="https://github.com/user-attachments/assets/0280dcc7-002c-446a-aff4-2437a3525353" />
+
 
 
 
 
 ### Confusion Matrix
 
-<img width="952" height="803" alt="image" src="https://github.com/user-attachments/assets/4ea96e65-297c-442a-a2e7-75de6bbb5fde" />
+<img width="658" height="661" alt="image" src="https://github.com/user-attachments/assets/f23ca86d-15cb-4f85-8982-4c6a96a66872" />
+
 
 
 
 ### Classification Report
 
-<img width="1781" height="440" alt="image" src="https://github.com/user-attachments/assets/24a7a9bd-6240-4db3-b797-d9706ad84c2e" />
+<img width="554" height="255" alt="image" src="https://github.com/user-attachments/assets/397b3e6f-c38e-443f-a064-ea05dc592021" />
+
 
 
 
 
 ### New Sample Prediction
 
-<img width="843" height="641" alt="image" src="https://github.com/user-attachments/assets/2f037b88-0659-4f3b-a69a-f91ff68b4746" />
+<img width="433" height="501" alt="image" src="https://github.com/user-attachments/assets/9282ec82-2301-44a7-96ab-be7db2d05d8b" />
 
-<img width="813" height="630" alt="image" src="https://github.com/user-attachments/assets/3e465565-9eeb-4a0c-bf14-c6268d367975" />
+<img width="428" height="501" alt="image" src="https://github.com/user-attachments/assets/c199b48e-5d48-4338-9117-dbdb3a3d9431" />
 
 
 
